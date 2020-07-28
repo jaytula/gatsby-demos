@@ -16,6 +16,16 @@ gatsby new [FOLDER_NAME] [URL_OF_STARTER_GITHUB_REPO]
 ```
 
 ## 2. Introduction to Styling in Gatsby - https://www.gatsbyjs.org/tutorial/part-two/
+
+### Using global styles
+
+- Create `src/styles` folder
+- Create `global.css` in that folder
+- Define a style for testing `html { background-color: lavender-blush; }`
+- Create file `gatsby-browser.js` at project root (not under `src` but beside it)
+- Import the `global.css` in this file
+- Restart `gatsby develop` because `gatsby-browsers.js` changed
+
 ## 3. Creating Nested Layout Components - https://www.gatsbyjs.org/tutorial/part-three/
 ## 4. Data in Gatsby - https://www.gatsbyjs.org/tutorial/part-four/
 ## 5. Source Plugins - https://www.gatsbyjs.org/tutorial/part-five/
