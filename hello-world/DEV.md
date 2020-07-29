@@ -419,6 +419,10 @@ module.exports = {
   - Use `data.site.siteMetadata.title` for `h1` textContent
   - Export graphql `const query`
 
+#### Use a StaticQuery
+
+- Import `useStaticQuery` and `graphql` from `gatsby`
+- Use it in the component `Layout`
 
 
 ## 5. Source Plugins - https://www.gatsbyjs.org/tutorial/part-five/
