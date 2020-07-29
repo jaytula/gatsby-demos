@@ -114,6 +114,52 @@ There are many different CSS-in-JS libraries many of which have Gatsby plugins. 
 - Styled Components
 
 ## 3. Creating Nested Layout Components - https://www.gatsbyjs.org/tutorial/part-three/
+
+- `npm i gatsby-plugin-typography react-typography typography typography-theme-fairy-gates`
+- Edit `gatsby-config.js` to include `gatsby-plugin-typography`
+
+```js
+module.exports = {
+  plugins: [
+    {
+      resolve: `gatsby-plugin-typography`,
+      options: {
+        pathToConfigModule: `src/utils/typography`,
+      },
+    },
+  ],
+}
+```
+
+- Add `src/utils/typography.js` with the following contents:
+
+```js
+import Typography from "typography"
+import fairyGateTheme from "typography-theme-fairy-gates"
+
+const typography = new Typography(fairyGateTheme)
+
+export const { scale, rhythm, options } = typography
+export default typography
+```
+
+- Add `./pages/typography-demo.js` with the following:
+
+```js
+import React from "react"
+export default function TypographyDemo() {
+  return (
+    <div>
+      <h1>Hi! I'm building a fake Gatsby site as part of a tutorial!</h1>
+      <p>
+        What do I like to do? Lots of course but definitely enjoy building
+        websites.
+      </p>
+    </div>
+  )
+}
+```
+
 ## 4. Data in Gatsby - https://www.gatsbyjs.org/tutorial/part-four/
 ## 5. Source Plugins - https://www.gatsbyjs.org/tutorial/part-five/
 ## 6. Transformer Plugins - https://www.gatsbyjs.org/tutorial/part-six/
