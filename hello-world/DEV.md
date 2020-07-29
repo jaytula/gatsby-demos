@@ -106,6 +106,13 @@ export default function About() {
 }
 ```
 
+### CSS-in-JS
+
+There are many different CSS-in-JS libraries many of which have Gatsby plugins.  Some notable ones:
+
+- Emotion
+- Styled Components
+
 ## 3. Creating Nested Layout Components - https://www.gatsbyjs.org/tutorial/part-three/
 ## 4. Data in Gatsby - https://www.gatsbyjs.org/tutorial/part-four/
 ## 5. Source Plugins - https://www.gatsbyjs.org/tutorial/part-five/
