@@ -424,8 +424,88 @@ module.exports = {
 - Import `useStaticQuery` and `graphql` from `gatsby`
 - Use it in the component `Layout`
 
-
 ## 5. Source Plugins - https://www.gatsbyjs.org/tutorial/part-five/
+
+### Introducing GraphiQL
+
+Accessible by default under `/___graphql` when the developmentserver is running
+
+### Using GraphiQL Explorer
+
+Can construct queries through the Explorer. Note that there is both the purple and blue for `siteMetadata`
+
+### Source plugins
+
+Fetch data from file system
+
+- `npm install gatsby-source-filesystem`
+- In `gatsby-config.js`, add the plugin under the `plugins` key.  Specify `resolve` and `options.name` and `options.path` (absolute path)
+- Run in graphiql `query { allFile { edges { node { id base extension}}}}`
+
+### Build a page with a GraphQL query
+
+- Create `pages/my-files.js`:
+
+```js
+import React from "react"
+import { graphql } from "gatsby"
+import Layout from "../components/layout"
+
+export default function MyFiles({ data }) {
+  console.log(data)
+  return (
+    <Layout>
+      <div>Hello world</div>
+    </Layout>
+  )
+}
+
+export const query = graphql`
+  query {
+    allFile {
+      edges {
+        node {
+          relativePath
+          prettySize
+          extension
+          birthTime(fromNow: true)
+        }
+      }
+    }
+  }
+`
+```
+
+- Inspect console.log
+- Replace Layout children with:
+
+```jsx
+<div>
+  <h1>My Site's Files</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>relativePath</th>
+        <th>prettySize</th>
+        <th>extension</th>
+        <th>birthTime</th>
+      </tr>
+    </thead>
+    <tbody>
+      {data.allFile.edges.map(({ node }, index) => (
+        <tr key={index}>
+          <td>{node.relativePath}</td>
+          <td>{node.prettySize}</td>
+          <td>{node.extension}</td>
+          <td>{node.birthTime}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+```
+
+
 ## 6. Transformer Plugins - https://www.gatsbyjs.org/tutorial/part-six/
 ## 7. Programatically create pages from data - https://www.gatsbyjs.org/tutorial/part-seven/
 ## 8. Preparing a Site to Go Live - https://www.gatsbyjs.org/tutorial/part-eight/
