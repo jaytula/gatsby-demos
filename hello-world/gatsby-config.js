@@ -5,6 +5,9 @@
  */
 
 module.exports = {
+  siteMetadata: {
+    title: 'I am a superhero'
+  },
   plugins: [
     `gatsby-plugin-emotion`,
     {

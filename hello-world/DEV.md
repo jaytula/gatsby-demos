@@ -406,6 +406,21 @@ module.exports = {
 }
 ```
 
+### Your first GraphQL query
+
+- Use `siteMetadata` object in `gatsby-config.js` to store common bits of data.
+
+#### Use a page query
+
+- Add `siteMetadata` object in `gatsby-config.js`
+- Adjust `about.js` to use it.
+  - Add named import `graphql` from `gatsby`
+  - Inject `data` prop
+  - Use `data.site.siteMetadata.title` for `h1` textContent
+  - Export graphql `const query`
+
+
+
 ## 5. Source Plugins - https://www.gatsbyjs.org/tutorial/part-five/
 ## 6. Transformer Plugins - https://www.gatsbyjs.org/tutorial/part-six/
 ## 7. Programatically create pages from data - https://www.gatsbyjs.org/tutorial/part-seven/
