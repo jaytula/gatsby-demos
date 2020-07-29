@@ -263,6 +263,149 @@ export default function Layout({ children }) {
 
 
 ## 4. Data in Gatsby - https://www.gatsbyjs.org/tutorial/part-four/
+
+### Data in Gatsby
+
+#### What is data
+
+- For Gatsby, data is "everything that lives outside a React Component"
+
+### Using Unstructured Data vs GraphQL
+
+> Do I have to use GraphQL and source plugins to pull data into Gatsby sites?
+
+No, there's the node `createPages` API
+
+https://www.gatsbyjs.org/docs/using-gatsby-without-graphql/
+
+> When do I use unstructured data vs GraphQL?
+
+For small sites, start with `createPages` API. When it gets more complex or
+data transformation is required.
+
+1. Checkout the [Plugin Library](https://www.gatsbyjs.org/plugins/)
+2. Create your own [Plugin Authoring](https://www.gatsbyjs.org/docs/creating-plugins/)
+
+> How Gatsby’s data layer uses GraphQL to pull data into components
+
+Gatsby uses GraphQL to enable components to declare the data they need
+
+### Create a new example site
+
+- `npm install --save gatsby-plugin-typography typography react-typography typography-theme-kirkham gatsby-plugin-emotion @emotion/core`
+- Update `layout.js` to be:
+
+```js
+import React from "react"
+import { css } from "@emotion/core"
+import { Link } from "gatsby"
+
+import { rhythm } from "../utils/typography"
+
+export default function Layout({ children }) {
+  return (
+    <div
+      css={css`
+        margin: 0 auto;
+        max-width: 700px;
+        padding: ${rhythm(2)};
+        padding-top: ${rhythm(1.5)};
+      `}
+    >
+      <Link to={`/`}>
+        <h3
+          css={css`
+            margin-bottom: ${rhythm(2)};
+            display: inline-block;
+            font-style: normal;
+          `}
+        >
+          Pandas Eating Lots
+        </h3>
+      </Link>
+      <Link
+        to={`/about/`}
+        css={css`
+          float: right;
+        `}
+      >
+        About
+      </Link>
+      {children}
+    </div>
+  )
+}
+```
+
+- Update `pages/index.js` to be:
+
+```js
+import React from "react"
+import Layout from "../components/layout"
+
+export default function Home() {
+  return (
+    <Layout>
+      <h1>Amazing Pandas Eating Things</h1>
+      <div>
+        <img
+          src="https://2.bp.blogspot.com/-BMP2l6Hwvp4/TiAxeGx4CTI/AAAAAAAAD_M/XlC_mY3SoEw/s1600/panda-group-eating-bamboo.jpg"
+          alt="Group of pandas eating bamboo"
+        />
+      </div>
+    </Layout>
+  )
+}
+```
+
+- Update `pages/about.js` to be:
+
+
+```js
+import React from "react"
+import Layout from "../components/layout"
+
+export default function About() {
+  return (
+    <Layout>
+      <h1>About Pandas Eating Lots</h1>
+      <p>
+        We're the only site running on your computer dedicated to showing the
+        best photos and videos of pandas eating lots of food.
+      </p>
+    </Layout>
+  )
+}
+```
+
+- Update `src/utils/typography.js` to be
+
+```js
+import Typography from "typography"
+import kirkhamTheme from "typography-theme-kirkham"
+
+const typography = new Typography(kirkhamTheme)
+
+export default typography
+export const rhythm = typography.rhythm
+```
+
+- Update `gatsby-config.js` to include `gatsby-plugin-emotion`
+
+```js
+module.exports = {
+  plugins: [
+    `gatsby-plugin-emotion`,
+    {
+      resolve: `gatsby-plugin-typography`,
+      options: {
+        pathToConfigModule: `src/utils/typography`,
+      },
+    },
+  ],
+}
+```
+
 ## 5. Source Plugins - https://www.gatsbyjs.org/tutorial/part-five/
 ## 6. Transformer Plugins - https://www.gatsbyjs.org/tutorial/part-six/
 ## 7. Programatically create pages from data - https://www.gatsbyjs.org/tutorial/part-seven/
