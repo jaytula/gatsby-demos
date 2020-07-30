@@ -507,5 +507,29 @@ export const query = graphql`
 
 
 ## 6. Transformer Plugins - https://www.gatsbyjs.org/tutorial/part-six/
+
+### What's in the tutorial
+
+Source plugins bring data *into* Gatsby.  Transformer plugins *transform* the
+raw content from source plugins.
+
+### Transformer plutgins
+
+- Add a markdown file: `pages/sweet-pandas-eating-sweets.md`
+
+```md
+---
+title: "Sweet Pandas Eating Sweets"
+date: "2017-08-10"
+---
+Pandas are really sweet.
+Here's a video of a panda eating sweets.
+<iframe width="560" height="315" src="https://www.youtube.com/embed/4n0xNbfJLR8" frameborder="0" allowfullscreen></iframe>
+```
+
+- `npm install gatsby-transformer-remark`
+- Add to `plugins` array in `gatsyb-config.js`.  No special options so can just be a string.
+- Restart development server
+
 ## 7. Programatically create pages from data - https://www.gatsbyjs.org/tutorial/part-seven/
 ## 8. Preparing a Site to Go Live - https://www.gatsbyjs.org/tutorial/part-eight/
