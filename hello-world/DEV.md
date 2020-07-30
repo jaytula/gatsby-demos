@@ -532,4 +532,33 @@ Here's a video of a panda eating sweets.
 - Restart development server
 
 ## 7. Programatically create pages from data - https://www.gatsbyjs.org/tutorial/part-seven/
+
+### Creating slugs for pages
+
+Two steps:
+
+1. Generate the "path" or "slug" for the page
+2. Create the page
+
+Two Gatsby APIs to use
+
+- `onCreateNode`
+- `createPages`
+
+To implement an API, export a function with the name of the API in `gatsby-node.js`.
+Then Add
+
+```js
+exports.onCreateNode = ({node}) => {
+  console.log(node.internal.type);
+}
+```
+
+`onCreateNode` is called by Gatsby whenever a new nodes is created or updated.
+
+- Wrap with if to check `node.internal.type` to only process only types we care about
+- Create slug with `createFilePath` passing an object with `node`, `getNode`, and `basePath` equal to `pages`
+- Add slugs onto `MarkdownRemark` nodes with `createNodeField`.  Destructure this from `actions` parameter prop.  The call is `createNodeField({node, name: 'slug', value: slug})`
+
+
 ## 8. Preparing a Site to Go Live - https://www.gatsbyjs.org/tutorial/part-eight/
