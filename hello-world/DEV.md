@@ -655,3 +655,46 @@ export const query = graphql`
 - Add `Link` to supages in `index.js` .  Be sure to add the slug to graphql query
 
 ## 8. Preparing a Site to Go Live - https://www.gatsbyjs.org/tutorial/part-eight/
+
+### Audit with Lighthouse
+
+#### Create a production build 
+
+```shell
+gatsby build
+
+gatsby serve
+```
+
+### Run a Lighthouse audit
+
+Go to Chrome DevTools and Lighthouse tab.  Generate Report.
+
+
+### Add a manifest file
+
+1. `npm i gatsby-plugin-manifest`
+2. Create `src/images` folder and get `icon.png` from https://raw.githubusercontent.com/gatsbyjs/gatsby/master/docs/tutorial/part-eight/icon.png
+3. Add the plugin to `gatsby-config.js` as follows:
+
+```js
+ {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `GatsbyJS`,
+        short_name: `GatsbyJS`,
+        start_url: `/`,
+        background_color: `#6b37bf`,
+        theme_color: `#6b37bf`,
+        // Enables "Add to Homescreen" prompt and disables browser UI (including back button)
+        // see https://developers.google.com/web/fundamentals/web-app-manifest/#display
+        display: `standalone`,
+        icon: `src/images/icon.png`, // This path is relative to the root of the site.
+      },
+    },
+```
+
+### Add offline support
+
+1. `npm i gatsby-plugin-offline`
+2. Add plugin to `gatsby-config.js`
