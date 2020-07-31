@@ -1,6 +1,6 @@
 import React from "react"
 import Layout from "../components/layout"
-import { graphql } from "gatsby"
+import { graphql, Link } from "gatsby"
 
 export default function Home({ data }) {
   console.log(data)
@@ -18,7 +18,9 @@ export default function Home({ data }) {
         {data.allMarkdownRemark.edges.map(({ node }) => (
           <div key={node.id}>
             <h3>
-              {node.frontmatter.title} -
+              <Link to={node.fields.slug}>
+                {node.frontmatter.title}
+              </Link> -
               <span style={{ color: "#bbb" }}>{node.frontmatter.date}</span>
             </h3>
             <p>{node.excerpt}</p>
@@ -38,6 +40,9 @@ export const query = graphql`
           frontmatter {
             date(formatString: "DD MMMM, YYYY")
             title
+          }
+          fields {
+            slug
           }
           excerpt
         }

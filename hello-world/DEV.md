@@ -560,5 +560,98 @@ exports.onCreateNode = ({node}) => {
 - Create slug with `createFilePath` passing an object with `node`, `getNode`, and `basePath` equal to `pages`
 - Add slugs onto `MarkdownRemark` nodes with `createNodeField`.  Destructure this from `actions` parameter prop.  The call is `createNodeField({node, name: 'slug', value: slug})`
 
+### Creating pages
+
+- Add to `gatsby-node.js`
+
+```js
+exports.createPages = async ({ graphql, actions }) => {
+  // **Note:** The graphql function call returns a Promise
+  // see: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise for more info
+  const result = await graphql(`
+    query {
+      allMarkdownRemark {
+        edges {
+          node {
+            fields {
+              slug
+            }
+          }
+        }
+      }
+    }
+  `)
+  console.log(JSON.stringify(result, null, 4))
+}
+```
+
+- Create directory `src/templates` and file `blog-post.js` inside it
+
+- The contents of `blog-post.js` is
+
+
+```js
+import React from "react"
+import Layout from "../components/layout"
+
+export default function BlogPost() {
+  return (
+    <Layout>
+      <div>Hello blog post</div>
+    </Layout>
+  )
+}
+```
+
+- Add to `exports.createPages`:
+
+```js
+  const { createPage } = actions;
+// ....
+  result.data.allMarkdownRemark.edges.forEach(({ node }) => {
+    createPage({
+      path: node.fields.slug,
+      component: path.resolve(`./src/templates/blog-post.js`),
+      context: {
+        // Data passed to context is available
+        // in page queries as GraphQL variables.
+        slug: node.fields.slug,
+      },
+    })
+  })
+  ```
+
+  - Update `blog-post.js` template to:
+
+  ```js
+import React from "react"
+import { graphql } from "gatsby"
+import Layout from "../components/layout"
+
+export default function BlogPost({ data }) {
+  const post = data.markdownRemark
+  return (
+    <Layout>
+      <div>
+        <h1>{post.frontmatter.title}</h1>
+        <div dangerouslySetInnerHTML={{ __html: post.html }} />
+      </div>
+    </Layout>
+  )
+}
+
+export const query = graphql`
+  query($slug: String!) {
+    markdownRemark(fields: { slug: { eq: $slug } }) {
+      html
+      frontmatter {
+        title
+      }
+    }
+  }
+`
+```
+
+- Add `Link` to supages in `index.js` .  Be sure to add the slug to graphql query
 
 ## 8. Preparing a Site to Go Live - https://www.gatsbyjs.org/tutorial/part-eight/
