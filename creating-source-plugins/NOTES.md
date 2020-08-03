@@ -99,3 +99,12 @@ query {
   }
 }
 ```
+
+## Querying and sourcing data from a remote location
+
+### Adding dependencies
+
+```shell
+npm install apollo-cache-inmemory apollo-client apollo-link apollo-link-http graphql graphql-tag node-fetch ws subscriptions-transport-ws
+```
+
