@@ -33,3 +33,69 @@ Loading gatsby-starter-plugin
 ```
 
 Which is from the export `onPreInit` from `gatsby-node.js`.
+
+## Source data and create nodes
+
+### Create nodes inside of `sourceNodes` with the `createNode` function
+
+Change `gatsby-node.js` to the following:
+
+```js
+// constants for your GraphQL Post and Author types
+const POST_NODE_TYPE = `Post`
+
+exports.sourceNodes = async ({
+  actions,
+  createContentDigest,
+  createNodeId,
+  getNodesByType,
+}) => {
+  const { createNode } = actions
+
+  const data = {
+    posts: [
+      { id: 1, description: `Hello world!` },
+      { id: 2, description: `Second post!` },
+    ],
+  }
+
+  // loop through data and create Gatsby nodes
+  data.posts.forEach(post =>
+    createNode({
+      ...post,
+      id: createNodeId(`${POST_NODE_TYPE}-${post.id}`),
+      parent: null,
+      children: [],
+      internal: {
+        type: POST_NODE_TYPE,
+        content: JSON.stringify(post),
+        contentDigest: createContentDigest(post),
+      },
+    })
+  )
+
+  return
+}
+```
+
+The above:
+
+- Implements `sourceNodes` API which will run as part of Gatsby bootstrap process.
+- Gatsby helpers pulled out: `createContentDigtest` and `createNodeId`
+- Provided required fields for the node:
+  - node ID creation
+  - content digest for tracking dirty nodes
+- Created `data.posts` array for testing and calling `createNode` on each post
+
+Run the following graphql query to verify node creation
+
+```graphql
+query {
+  allPost {
+    nodes {
+      id
+      description
+    }
+  }
+}
+```
