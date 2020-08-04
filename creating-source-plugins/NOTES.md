@@ -113,3 +113,77 @@ npm install apollo-cache-inmemory apollo-client apollo-link apollo-link-http gra
 - Create an `ApolloClient` as `client`.  Takes in an object with keys `link` and `cache`.
 - For `link`, we use `apollo-link` `split` whereby the first argument is a test to determine whether to flow to the first link or
   the optional second link 
+
+### Query Data from the API
+
+1. Replace hardcoded data in `gatsby-node`'s `sourcesNode` with a GraphQL query using the `client` just created:
+
+```js
+const { data } = await client.query({
+  query: gql`
+    query {
+      posts {
+        id
+        description
+        slug
+        imgUrl
+        imgAlt
+        author {
+          id
+          name
+        }
+      }
+      authors {
+        id
+        name
+      }
+    }
+  `
+});
+```
+
+2.  Create author nodes in `sourcesNode`:
+
+```js
+
+const AUTHOR_NODE_TYPE = `Author` 
+
+
+exports.sourceNodes = async ({actions}) {
+  // ....
+
+  data.authors.forEach(author =>
+    createNode({
+      ...author,
+      id: createNodeId(`${AUTHOR_NODE_TYPE}-${author.id}`), // hashes the inputs into an ID
+      parent: null,
+      children: [],
+      internal: {
+        type: AUTHOR_NODE_TYPE,
+        content: JSON.stringify(author),
+        contentDigest: createContentDigest(author),
+      },
+    })
+  )
+}
+```
+
+3. Check in GraphiQL that it is working:
+
+```gql
+query {
+  allPost {
+    nodes {
+      id
+      description
+      imgUrl
+    }
+  }
+  allAuthor {
+    nodes {
+      id
+      name
+    }
+  }
+}
+```
