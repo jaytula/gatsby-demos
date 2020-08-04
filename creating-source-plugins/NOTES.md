@@ -108,3 +108,8 @@ query {
 npm install apollo-cache-inmemory apollo-client apollo-link apollo-link-http graphql graphql-tag node-fetch ws subscriptions-transport-ws
 ```
 
+### Configure an Apollo client to fetch data
+
+- Create an `ApolloClient` as `client`.  Takes in an object with keys `link` and `cache`.
+- For `link`, we use `apollo-link` `split` whereby the first argument is a test to determine whether to flow to the first link or
+  the optional second link 
