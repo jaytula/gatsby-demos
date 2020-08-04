@@ -187,3 +187,36 @@ query {
   }
 }
 ```
+
+## Optimize remote images
+
+### Create `remoteFileNode`'s from a URL
+
+- Add `gatsby-source-filesystem` to `source-plugin` project
+- In `gatsby-node.js`, import `createRemoteFileNode` helper from `gatsby-source-filesystem`
+- Export new function `onCreateNode`, like so:
+
+```js
+exports.onCreateNode = async ({
+  node, // the node that was just created
+  actions: { createNode },
+  createNodeId,
+  getCache,
+}) => {
+  if (node.internal.type === POST_NODE_TYPE) {
+    const fileNode = await createRemoteFileNode({
+      // the url of the remote image to generate a node for
+      url: node.imgUrl,
+      parentNodeId: node.id,
+      createNode,
+      createNodeId,
+      getCache,
+    })
+
+    if (fileNode) {
+      node.remoteImage___NODE = fileNode.id
+    }
+  }
+}
+```
+

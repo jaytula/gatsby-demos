@@ -13,6 +13,7 @@ const { getMainDefinition } = require("apollo-utilities");
 const fetch = require("node-fetch");
 const gql = require("graphql-tag");
 const WebSocket = require("ws");
+const { createRemoteFileNode } = require("gatsby-source-filesystem");
 
 /**
  * You can uncomment the following line to verify that
@@ -58,7 +59,7 @@ exports.sourceNodes = async ({
 }) => {
   const { createNode } = actions;
 
-  const { data } = client.query({
+  const { data } = await client.query({
     query: gql`
       query {
         posts {
@@ -112,3 +113,27 @@ exports.sourceNodes = async ({
 
   return;
 };
+
+exports.onCreateNode = async ({
+  node, // the node that was just created
+  actions: { createNode },
+  createNodeId,
+  getCache,
+}) => {
+  console.log('type: ' + node.internal.type);
+  if (node.internal.type === POST_NODE_TYPE) {
+    console.log("onCreateNode: " + node.id)
+    const fileNode = await createRemoteFileNode({
+      // the url of the remote image to generate a node for
+      url: node.imgUrl,
+      parentNodeId: node.id,
+      createNode,
+      createNodeId,
+      getCache,
+    })
+
+    if (fileNode) {
+      node.remoteImage___NODE = fileNode.id
+    }
+  }
+}
