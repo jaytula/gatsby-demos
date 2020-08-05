@@ -120,9 +120,8 @@ exports.onCreateNode = async ({
   createNodeId,
   getCache,
 }) => {
-  console.log('type: ' + node.internal.type);
   if (node.internal.type === POST_NODE_TYPE) {
-    console.log("onCreateNode: " + node.id)
+    console.log("onCreatefNode: " + node.id);
     const fileNode = await createRemoteFileNode({
       // the url of the remote image to generate a node for
       url: node.imgUrl,
@@ -130,10 +129,30 @@ exports.onCreateNode = async ({
       createNode,
       createNodeId,
       getCache,
-    })
+    });
 
     if (fileNode) {
-      node.remoteImage___NODE = fileNode.id
+      node.remoteImage = fileNode.id;
     }
   }
+};
+
+exports.createSchemaCustomization = ({ actions }) => {
+  const { createTypes } = actions
+  createTypes(`
+    type Post implements Node {
+      id: ID!
+      slug: String!
+      description: String!
+      imgUrl: String!
+      imgAlt: String!
+      # create relationships between Post and File nodes for optimized images
+      remoteImage: File @link
+      # create relationships between Post and Author nodes
+      author: Author @link(from: "author.name" by: "name")
+    }
+    type Author implements Node {
+      id: ID!
+      name: String!
+    }`)
 }

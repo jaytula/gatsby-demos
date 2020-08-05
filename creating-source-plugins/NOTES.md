@@ -231,3 +231,50 @@ npm install gatsby-plugin-sharp gatsby-transformer-sharp
 2. Include these after the `source-plugin` in `gatsyb-config.js`
 
 3. Check in graphiql for `childSharpImage`
+
+## Create foreign key relationships between data
+
+Add `exports.createSchemaCustomization`:
+
+```js
+exports.createSchemaCustomization = ({ actions }) => {
+  const { createTypes } = actions
+  createTypes(`
+    type Post implements Node {
+      id: ID!
+      slug: String!
+      description: String!
+      imgUrl: String!
+      imgAlt: String!
+      # create relationships between Post and File nodes for optimized images
+      remoteImage: File @link
+      # create relationships between Post and Author nodes
+      author: Author @link(from: "author.name" by: "name")
+    }
+    type Author implements Node {
+      id: ID!
+      name: String!
+    }`)
+}
+```
+
+- Drop the `___NODE` in `exports.onCreateNode` `node.remoteImage` assignment to `fileNode.id`
+
+- Do a `gatsby clean` to ensure `onCreateNode` runs
+- Run in graphiql to check:
+
+```graphql
+query {
+  allPost {
+    nodes {
+      id
+      author {
+        name
+      }
+      remoteImage {
+        id
+      }
+    }
+  }
+}
+```
