@@ -220,3 +220,14 @@ exports.onCreateNode = async ({
 }
 ```
 
+### Transform `File` nodes with sharp plugins
+
+1. Install in `example-site` project (*not* the plugin)
+
+```shell
+npm install gatsby-plugin-sharp gatsby-transformer-sharp
+```
+
+2. Include these after the `source-plugin` in `gatsyb-config.js`
+
+3. Check in graphiql for `childSharpImage`

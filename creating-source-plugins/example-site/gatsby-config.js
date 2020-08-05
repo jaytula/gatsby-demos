@@ -6,5 +6,9 @@
 
 module.exports = {
   /* Your site config here */
-  plugins: [require.resolve("../source-plugin")],
+  plugins: [
+    require.resolve("../source-plugin"),
+    "gatsby-plugin-sharp",
+    "gatsby-transformer-sharp",
+  ],
 }
