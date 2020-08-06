@@ -353,3 +353,15 @@ export const query = graphql`
 - In `gatsby-config.js`, add `options.preview` key for the `source-plugin`
 - In `gatsby-node.js` `sourceNodes` API, the second positional argument is our options.
 - This provides a way to have conditional logic for plugins
+
+## Proactively updating data with subscriptions
+
+### Touch nodes in `sourcesNode`
+
+Use `getNodesByType` helper in `sourcesNodes` to get nodes of type `POST_NOTE_TYPE` and `AUTHOR_NOTE_TYPE`.
+Then  use `actions.touchNode` on each of them to ensure they are not garbage collected.  `touchNode` takes in
+an object with key `nodeId`
+
+### Using pluginOptions.previewMode
+
+Add a console.log placeholder with "Subscribing to content updates..."

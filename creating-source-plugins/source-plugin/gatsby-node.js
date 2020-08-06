@@ -51,14 +51,26 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-exports.sourceNodes = async ({
-  actions,
-  createContentDigest,
-  createNodeId,
-  getNodesByType,
-}, pluginOptions) => {
-  const { createNode } = actions;
+exports.sourceNodes = async (
+  { actions, createContentDigest, createNodeId, getNodesByType },
+  pluginOptions
+) => {
+  const { createNode, touchNode } = actions;
   console.log(pluginOptions);
+
+  getNodesByType(POST_NODE_TYPE).forEach(node => {
+    touchNode({ nodeId: node.id });
+  });
+
+  getNodesByType(AUTHOR_NODE_TYPE).forEach(node => {
+    touchNode({ nodeId: node.id });
+  });
+
+  if(pluginOptions.previewMode) {
+    console.log("Subscribing to content updates");
+
+    // TODO
+  }
 
   const { data } = await client.query({
     query: gql`
@@ -139,7 +151,7 @@ exports.onCreateNode = async ({
 };
 
 exports.createSchemaCustomization = ({ actions }) => {
-  const { createTypes } = actions
+  const { createTypes } = actions;
   createTypes(`
     type Post implements Node {
       id: ID!
@@ -155,5 +167,5 @@ exports.createSchemaCustomization = ({ actions }) => {
     type Author implements Node {
       id: ID!
       name: String!
-    }`)
-}
+    }`);
+};
