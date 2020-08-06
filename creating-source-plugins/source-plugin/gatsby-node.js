@@ -56,8 +56,9 @@ exports.sourceNodes = async ({
   createContentDigest,
   createNodeId,
   getNodesByType,
-}) => {
+}, pluginOptions) => {
   const { createNode } = actions;
+  console.log(pluginOptions);
 
   const { data } = await client.query({
     query: gql`

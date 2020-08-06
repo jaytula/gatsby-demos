@@ -347,3 +347,9 @@ export const query = graphql`
   }
 `
 ```
+
+## Using plugin options to customize plugin usage
+
+- In `gatsby-config.js`, add `options.preview` key for the `source-plugin`
+- In `gatsby-node.js` `sourceNodes` API, the second positional argument is our options.
+- This provides a way to have conditional logic for plugins
