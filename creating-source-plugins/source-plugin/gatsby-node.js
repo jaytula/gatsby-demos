@@ -66,8 +66,25 @@ exports.sourceNodes = async (
     touchNode({ nodeId: node.id });
   });
 
-  if(pluginOptions.previewMode) {
+  if (pluginOptions.previewMode) {
     console.log("Subscribing to content updates");
+
+    const subscription = await client.subscribe(gql`
+      subscription {
+        posts {
+          id
+          slug
+          description
+          imgUrl
+          imgAlt
+          author {
+            id
+            name
+          }
+          status
+        }
+      }
+    `);
 
     // TODO
   }
