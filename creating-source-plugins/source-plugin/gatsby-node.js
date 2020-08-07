@@ -52,10 +52,10 @@ const client = new ApolloClient({
 });
 
 exports.sourceNodes = async (
-  { actions, createContentDigest, createNodeId, getNodesByType },
+  { actions, createContentDigest, createNodeId, getNodesByType, getNode },
   pluginOptions
 ) => {
-  const { createNode, touchNode } = actions;
+  const { createNode, touchNode, deleteNode } = actions;
   console.log(pluginOptions);
 
   getNodesByType(POST_NODE_TYPE).forEach(node => {
@@ -86,7 +86,36 @@ exports.sourceNodes = async (
       }
     `);
 
-    // TODO
+    subscription.subscribe(({ data }) => {
+      console.log("Subscription received");
+      console.log(data.posts);
+      data.posts.forEach(post => {
+        const nodeId = createNodeId(`${POST_NODE_TYPE}-${post.id}`);
+
+        switch (post.status) {
+          case "deleted":
+            deleteNode({ node: getNode(nodeId) });
+            break;
+
+          case "created":
+          case "updated":
+          default:
+            // created and updated can be handled by the same code path
+            // the post's id is presumed to stay constant (or can be inferred)
+            createNode({
+              ...post,
+              id: createNodeId(`${POST_NODE_TYPE}-${post.id}`),
+              parent: null,
+              children: [],
+              internal: {
+                type: POST_NODE_TYPE,
+                content: JSON.stringify(post),
+              },
+            });
+            break;
+        }
+      });
+    });
   }
 
   const { data } = await client.query({
