@@ -365,3 +365,11 @@ an object with key `nodeId`
 ### Using pluginOptions.previewMode
 
 Add a console.log placeholder with "Subscribing to content updates..."
+
+## Publishing a plugin
+
+npm docs: https://docs.npmjs.com/packages-and-modules/contributing-packages-to-the-registry
+
+gatsby plugin libary: https://www.gatsbyjs.org/plugins/
+
+publish to gatsby library steps: https://www.gatsbyjs.org/contributing/submit-to-plugin-library/
