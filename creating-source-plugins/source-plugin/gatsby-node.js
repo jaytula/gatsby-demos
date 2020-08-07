@@ -69,22 +69,24 @@ exports.sourceNodes = async (
   if (pluginOptions.previewMode) {
     console.log("Subscribing to content updates");
 
-    const subscription = await client.subscribe(gql`
-      subscription {
-        posts {
-          id
-          slug
-          description
-          imgUrl
-          imgAlt
-          author {
+    const subscription = await client.subscribe({
+      query: gql`
+        subscription {
+          posts {
             id
-            name
+            slug
+            description
+            imgUrl
+            imgAlt
+            author {
+              id
+              name
+            }
+            status
           }
-          status
         }
-      }
-    `);
+      `,
+    });
 
     subscription.subscribe(({ data }) => {
       console.log("Subscription received");
@@ -110,6 +112,7 @@ exports.sourceNodes = async (
               internal: {
                 type: POST_NODE_TYPE,
                 content: JSON.stringify(post),
+                contentDigest: createContentDigest(post)
               },
             });
             break;
