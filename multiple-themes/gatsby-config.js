@@ -6,5 +6,21 @@
 
 module.exports = {
   /* Your site config here */
-  plugins: [],
+  siteMetadata: {
+    title: 'Multiple Themes'
+  },
+  plugins: [
+    {
+      resolve: 'gatsby-theme-blog',
+      options: {
+        basePath: '/blog'
+      }
+    },
+    {
+      resolve: 'gatsby-theme-notes',
+      options: {
+        basePath: '/notes'
+      }
+    },
+  ],
 }
