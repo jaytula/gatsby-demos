@@ -2,7 +2,10 @@ module.exports = {
   plugins: [
     {
       resolve: `gatsby-theme-blog`,
-      options: {},
+      options: {
+        preset: '@theme-ui/preset-funk',
+        prismPreset: 'prism-okaidia'
+      },
     },
   ],
   // Customize your site metadata:
@@ -10,6 +13,7 @@ module.exports = {
     title: `My Blog Title`,
     author: `My Name`,
     description: `My site description...`,
+    siteUrl: 'https://codepasta.io',
     social: [
       {
         name: `twitter`,
