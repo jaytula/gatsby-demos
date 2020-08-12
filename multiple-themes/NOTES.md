@@ -21,3 +21,13 @@ npm install gatsby-theme-blog gatsby-theme-notes
 
 - `Theme-UI` docs: https://www.gatsbyjs.com/docs/theme-ui/
 - Shadow at `src/gatsby-plugin/theme-ui/index.js
+
+## Add another theme
+
+```shell
+npm install @pauliescalon/gatsby-mdx-embed
+```
+
+- Add to plugins array in `gatsby-config.js`
+
+- Add test post with `<Youtube youTubeId="abcdefg" />` under `content/posts/something.md`

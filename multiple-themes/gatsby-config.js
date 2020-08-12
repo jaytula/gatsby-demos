@@ -10,6 +10,7 @@ module.exports = {
     title: 'Multiple Themes'
   },
   plugins: [
+    '@pauliescanlon/gatsby-mdx-embed',
     {
       resolve: 'gatsby-theme-blog',
       options: {
