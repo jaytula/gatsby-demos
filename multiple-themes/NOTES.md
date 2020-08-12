@@ -16,3 +16,8 @@ npm install gatsby-theme-blog gatsby-theme-notes
 
 - remove `pages/index.js`
 - Specify `options.basePath` as `/` for the `gatsby-theme-blog` plugin
+
+## Shadow Theme UI
+
+- `Theme-UI` docs: https://www.gatsbyjs.com/docs/theme-ui/
+- Shadow at `src/gatsby-plugin/theme-ui/index.js
