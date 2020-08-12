@@ -12,3 +12,7 @@ gatsby new multiple-themes https://github.com/gatsbyjs/gatsby-starter-hello-worl
 npm install gatsby-theme-blog gatsby-theme-notes
 ```
 
+## Put blog posts on the hompeage
+
+- remove `pages/index.js`
+- Specify `options.basePath` as `/` for the `gatsby-theme-blog` plugin
