@@ -31,3 +31,12 @@ npm install @pauliescalon/gatsby-mdx-embed
 - Add to plugins array in `gatsby-config.js`
 
 - Add test post with `<Youtube youTubeId="abcdefg" />` under `content/posts/something.md`
+
+## Add a navigation menu
+
+1. Add `menuLinks` array to `gatsby-config.js` under the `siteMetadata` key.  This is of type
+`{name: string, url: string}[]`
+2. Create nativation component at `src/components/navigation.js`
+3. Shadow `gatsby-theme-blog/components/header.js`
+4. Import and add Navigation component
+

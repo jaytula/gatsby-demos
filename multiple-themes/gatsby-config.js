@@ -7,7 +7,17 @@
 module.exports = {
   /* Your site config here */
   siteMetadata: {
-    title: 'Multiple Themes'
+    title: 'Multiple Themes',
+    menuLinks: [
+      {
+        name: 'Blog',
+        url: '/'
+      },
+      {
+        name: 'Notes',
+        url: '/notes'
+      }
+    ]
   },
   plugins: [
     '@pauliescanlon/gatsby-mdx-embed',
