@@ -55,3 +55,9 @@ yarn workspace site add gatsby react react-dom gatsby-theme-events@*
 ```
 
 - Check dependencies with `yarn workspaces info`
+
+## Add peer dependencies to `gatsby-theme-events`
+
+```shell
+yarn workspace gatsby-theme-events add -P gatsby react react-dom
+```
