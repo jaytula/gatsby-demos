@@ -47,3 +47,11 @@ Specify `workspaces` array in `package.json`
 ```
 
 - Create a blank `index.js` in `gatsby-theme-events` project folder
+
+## Add dependencies to `site`
+
+```shell
+yarn workspace site add gatsby react react-dom gatsby-theme-events@*
+```
+
+- Check dependencies with `yarn workspaces info`
