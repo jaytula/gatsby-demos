@@ -67,3 +67,25 @@ yarn workspace gatsby-theme-events add -P gatsby react react-dom
 ```shell
 yarn workspace gatsby-theme-vents add -D gatsby react react-dom
 ```
+
+## Run `site` and `gatsby-theme-events`
+
+```shell
+yarn workspace site develop
+```
+
+```shell
+yarn workspace gatsby-theme-events develop
+```
+
+**Important**
+
+For each workspace, add `.eslintrc`:
+
+```
+{
+  "plugins": [
+    "jsx-a11y"
+  ]
+}
+```
