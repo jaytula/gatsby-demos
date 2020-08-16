@@ -1,3 +1,5 @@
 site/.cache
 site/public
+gatsby-theme-events/.cache
+gatsby-theme-events/public
 *.swp
