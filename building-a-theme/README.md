@@ -89,3 +89,72 @@ For each workspace, add `.eslintrc`:
   ]
 }
 ```
+
+## Add static data to a theme
+
+- Create a file `gatsby-theme-events/data/events.yml` for sample data:
+
+```yaml
+- name: React Rally
+  location: Salt Lake City, UT
+  start_date: 2019-08-22
+  end_date: 2019-08-23
+  url: https://www.reactrally.com/
+
+- name: DinosaurJS
+  location: Denver, CO
+  start_date: 2019-06-20
+  end_date: 2019-06-21
+  url: https://dinosaurjs.org/
+
+- name: JSHeroes
+  location: Cluj-Napoca, Romania
+  start_date: 2020-04-23
+  end_date: 2020-04-24
+  url: https://jsheroes.io/
+
+- name: The Lead Developer
+  location: Austin, TX
+  start_date: 2019-11-08
+  end_date: 2019-11-08
+  url: https://austin2019.theleaddeveloper.com/
+```
+
+- Install dependencies to be able to read YAML: `yarn workspace gatsby-theme-events add gatsby-source-filesystem gatsby-transformer-yaml`
+
+- Create `gatsby-config.js` in `gatsby-theme-events`:
+
+```js
+module.exports = {
+  plugins: [
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        path: "data",
+      },
+    },
+    {
+      resolve: "gatsby-transformer-yaml",
+      options: {
+        typeName: "Event",
+      },
+    },
+  ],
+}
+```
+
+- Restart the dev server: `yarn workspace gatsby-theme-events develop`
+
+- Try the following GraphQL query:
+
+```
+query MyQuery {
+  allEvent {
+    edges {
+      node {
+        name
+      }
+    }
+  }
+}
+```
