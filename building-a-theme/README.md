@@ -176,3 +176,32 @@ exports.onPreBootstrap = ({ reporter }) => {
   }
 }
 ```
+
+## Set up to create data-driven pages
+
+### Define the `Event` Type
+
+This is done `exports.sourceNodes` of `gatsby-node.js`
+
+- Use the `createTypes` to create the new `Event` type
+- The `Event` type will implemnt the Gatsby `Node` interface
+- Use `@dontInfer` because we will be defining the fields directly
+- Specify `id` and other fields
+- We also have a `slug` which we'll define in the next step.
+
+```js
+// Define the "Event" type
+exports.sourceNodes = ({ actions }) => {
+  actions.createTypes(`
+    type Event implements Node @dontInfer {
+      id: ID!
+      name: String!
+      location: String!
+      startDate: Date! @dateformat @proxy(from: "start_date")
+      endDate: Date! @dateformat @proxy(from: "end_date")
+      url: String!
+      slug: String!
+    }
+  `)
+}
+```
