@@ -231,3 +231,22 @@ exports.createResolvers = ({ createResolvers }) => {
   })
 }
 ```
+
+## Create data-driven pages using GraphQL and `createPages`
+
+### Set up the call to create the root page
+
+```js
+// query for events and create pages
+exports.createPages = async ({ actions, graphql, reporter }) => {
+  const basePath = "/"
+  actions.createPage({
+    path: basePath,
+    component: require.resolve("./src/templates/events.js"),
+  })
+}
+```
+
+- Default `basePath` to `"/"`
+- Call `actions.createPage` to create the page at the `basePath`.
+- Note the component `/src/templates/cevents.js` hasn't yet been created

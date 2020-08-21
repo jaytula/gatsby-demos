@@ -43,3 +43,12 @@ exports.createResolvers = ({ createResolvers }) => {
     },
   })
 }
+
+// query for events and create pages
+exports.createPages = async ({ actions, graphql, reporter }) => {
+  const basePath = "/"
+  actions.createPage({
+    path: basePath,
+    component: require.resolve("./src/templates/events.js"),
+  })
+}
