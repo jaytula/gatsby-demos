@@ -250,3 +250,25 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
 - Default `basePath` to `"/"`
 - Call `actions.createPage` to create the page at the `basePath`.
 - Note the component `/src/templates/cevents.js` hasn't yet been created
+
+### Query fo revents
+
+```js
+  const result = await graphql(`
+    query {
+      allEvent(sort: { fields: startDate, order: ASC }) {
+        nodes {
+          id
+          slug
+        }
+      }
+    }
+  `)
+  if (result.errors) {
+    reporter.panic("error loading events", result.errors)
+    return
+  }
+```
+
+- Retrieve all events sorted by `startDate` in ascending order
+- Handler error by checking for `results.errors`
