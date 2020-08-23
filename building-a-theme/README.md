@@ -251,7 +251,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
 - Call `actions.createPage` to create the page at the `basePath`.
 - Note the component `/src/templates/cevents.js` hasn't yet been created
 
-### Query fo revents
+### Query for events
 
 ```js
   const result = await graphql(`
@@ -272,3 +272,22 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
 
 - Retrieve all events sorted by `startDate` in ascending order
 - Handler error by checking for `results.errors`
+
+### Create a page for each event
+
+```js
+  const events = result.data.allEvent.nodes
+  events.forEach(event => {
+    const slug = event.slug
+    actions.createPage({
+      path: slug,
+      component: require.resolve("./src/templates/event.js"),
+      context: {
+        eventID: event.id,
+      },
+    })
+  })
+```
+
+- grab event nodes queried from GraphQL
+- Loop through and use `createPage` to create a page for each event
