@@ -291,3 +291,25 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
 
 - grab event nodes queried from GraphQL
 - Loop through and use `createPage` to create a page for each event
+
+### Create the `events` and `event` template components
+
+#### Events template: `src/templates/events.js`
+
+```jsx
+import React from 'react';
+
+const EventsTemplate = () => <p>TODO: Build the events page template</p>
+
+export default EventsTemplate
+```
+
+#### Event template `src/templates/event.js`
+
+```jsx
+import React from 'react';
+
+const EventTemplate = () => <p>TODO: Build the event page template</p>
+
+export default EventTemplate
+```
