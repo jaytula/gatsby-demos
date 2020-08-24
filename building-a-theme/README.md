@@ -313,3 +313,9 @@ const EventTemplate = () => <p>TODO: Build the event page template</p>
 
 export default EventTemplate
 ```
+
+### Test that pages are building
+
+```shell
+yarn workspace gatsby-theme-events develop
+```
