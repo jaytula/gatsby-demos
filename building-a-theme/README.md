@@ -352,3 +352,34 @@ const EventsTemplate = () => {
 
 export default EventsTemplate
 ```
+
+### Create UI to display event data
+
+Start creating the UI to display event data:
+
+```jsx
+// General Layout
+// gatsby-theme-events/src/components/layout.js
+
+import React from 'react';
+
+const Layout = ({ children }) => {
+  <div>
+    <h1>Gatsby Events Theme</h1>
+    {children}
+  </div>
+}
+
+export default Layout
+```
+
+```jsx
+// events list component
+// gatsby-theme-events/src/components/event-list.js
+
+import React from 'react';
+
+const EventList = ({events}) => <pre>{JSON.stringify(events, null, 2)}</pre>
+
+export default EventList
+```
