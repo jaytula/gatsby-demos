@@ -319,3 +319,36 @@ export default EventTemplate
 ```shell
 yarn workspace gatsby-theme-events develop
 ```
+
+## Display sorted data with `useStaticQuery`
+
+In `gatsby-theme-events/src/templates/events.js`, import `graphql` and `useStaticQuery` from Gatsby.
+
+It should look like this:
+
+```js
+import React from "react"
+import { graphql, useStaticQuery } from "gatsby"
+
+const EventsTemplate = () => {
+  const data = useStaticQuery(graphql`
+    query {
+      allEvent(sort: { fields: startDate, order: ASC }) {
+        nodes {
+          id
+          name
+          startDate
+          endDate
+          location
+          url
+          slug
+        }
+      }
+    }
+  `)
+  const events = data.allEvent.nodes
+  return <p>TODO: Build the events page template</p>
+}
+
+export default EventsTemplate
+```
