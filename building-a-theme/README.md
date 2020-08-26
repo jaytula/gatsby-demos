@@ -383,3 +383,11 @@ const EventList = ({events}) => <pre>{JSON.stringify(events, null, 2)}</pre>
 
 export default EventList
 ```
+
+### Add the layout and events list components to the events page
+
+Update template file `events.js`:
+
+- Import the two new components
+- Return JSX of `EventsList` wrapped in `Layout`
+- Test out that this is being displayed
