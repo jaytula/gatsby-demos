@@ -423,3 +423,95 @@ const EventList = ({ events }) => (
 
 export default EventList
 ```
+
+## Display and query data by id with context and static queries
+
+### Add a page query
+
+Update `templates/event.js` to look like this:
+
+```jsx
+import React from "react"
+import { graphql } from "gatsby"
+export const query = graphql`
+  query($eventID: String!) {
+    event(id: { eq: $eventID }) {
+      name
+      url
+      startDate(formatString: "MMMM DD YYYY")
+      endDate(formatString: "MMMM DD YYYY")
+      location
+      slug
+    }
+  }
+`
+
+const EventTemplate = () => <p>TODO: Build the event page template</p>
+
+export default EventTemplate
+```
+
+### Modify the event template to access event data
+
+Update `templates/event.js` to look like this:
+
+```jsx
+import React from "react"
+import { graphql } from "gatsby"
+import Layout from "../components/layout"
+import Event from "../components/event"
+
+export const query = graphql`
+  query($eventID: String!) {
+    event(id: { eq: $eventID }) {
+      name
+      url
+      startDate(formatString: "MMMM DD YYYY")
+      endDate(formatString: "MMMM DD YYYY")
+      location
+      slug
+    }
+  }
+`
+const EventTemplate = ({ data: { event } }) => (
+  <Layout>
+    <Event {...event} />
+  </Layout>
+)
+
+export default EventTemplate
+```
+
+- Note `Event` component doesn't yet exist.
+
+So create it at `components/Event.js`:
+
+```jsx
+import React from "react"
+
+const Event = props => <pre>{JSON.stringify(props, null, 2)}</pre>
+
+export default Event
+```
+
+Finally update the `Event` component to use markup:
+
+```jsx
+import React from "react"
+
+const Event = ({ name, location, url, startDate, endDate }) => (
+  <div>
+    <h2>
+      {name} ({location})
+    </h2>
+    <p>
+      {startDate}-{endDate}
+    </p>
+    <p>
+      Website: <a href={url}>{url}</a>
+    </p>
+  </div>
+)
+
+export default Event
+```
