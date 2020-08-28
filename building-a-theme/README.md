@@ -566,3 +566,56 @@ const Event = ({ name, location, url, startDate, endDate }) => (
 
 export default Event
 ```
+
+## Configure a theme to take options
+
+Update `gatsby-theme-events/gatsby-config.js` to:
+
+```js
+module.exports = ({ contentPath = "data", basePath = "/" }) => ({
+  plugins: [
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        path: contentPath,
+      },
+    },
+    {
+      resolve: "gatsby-transformer-yaml",
+      options: {
+        typeName: "Event",
+      },
+    },
+  ],
+})
+```
+
+Update `gatsby-theme-events/gatsby-node.js` to:
+
+```js
+exports.onPreBootstrap = ({ reporter }, options) => {
+  const contentPath = options.contentPath || "data"
+
+  // {...}
+}
+
+exports.sourceNodes = ({ actions }) => {
+  // {...}
+}
+
+exports.createResolvers = ({ createResolvers }, options) => {
+  const basePath = options.basePath || "/"
+
+  // {...}
+}
+
+exports.createPages = async ({ actions, graphql, reporter }, options) => {
+  const basePath = options.basePath || "/"
+
+  // {...}
+}
+```
+
+- Convert `gatsby-config.js` to a function export that takes options: `contentPath` and `basePath`
+- These options are provided as the second argument in Gatsby API hooks.
+- Because the theme is now a function export, we can no longer run it standalone
