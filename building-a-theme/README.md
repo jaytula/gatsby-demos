@@ -619,3 +619,23 @@ exports.createPages = async ({ actions, graphql, reporter }, options) => {
 - Convert `gatsby-config.js` to a function export that takes options: `contentPath` and `basePath`
 - These options are provided as the second argument in Gatsby API hooks.
 - Because the theme is now a function export, we can no longer run it standalone
+
+### Set up `site/gatsby-config.js`
+
+Create `gatsby-config.js`
+
+```js
+module.exports = {
+  plugins: [
+    {
+      resolve: "gatsby-theme-events",
+      options: {
+        contentPath: "events",
+        basePath: "/events",
+      },
+    },
+  ],
+}
+```
+
+- Copy missing `events.yml` from theme plugin data folder
