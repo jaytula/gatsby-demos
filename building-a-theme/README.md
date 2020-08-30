@@ -725,3 +725,71 @@ export const theme = {
 
 export default theme
 ```
+
+## Use and override a theme with component shadowing
+
+- Create new file `gatsby-theme-events/src/gatsby-plugin-theme-ui/index.js`
+
+```js
+import { theme } from '../theme';
+
+export default theme;
+```
+
+- Refactor `src/components/layout` as follows:
+
+```jsx
+import React from "react"
+import { Heading, Container } from "theme-ui"
+
+const Layout = ({ children }) => {
+  return (
+    <div>
+      <Heading>Gatsby Events Theme</Heading>
+      <Container>{children}</Container>
+    </div>
+  )
+}
+
+export default Layout
+```
+
+- Test out site:
+
+```shell
+yarn workspace site develop
+```
+
+- Use `Styled` with `src/components/event-list.js`
+
+```jsx
+import React from "react"
+import { Link } from "gatsby"
+import { Styled } from "theme-ui"
+
+const EventList = ({ events }) => {
+  return (
+    <>
+      <Styled.h1>Upcoming Events</Styled.h1>
+      <Styled.ul>
+        {events.map(event => (
+          <Styled.li key={event.id}>
+            <strong>
+              <Link to={event.slug}>{event.name}</Link>
+            </strong>
+            <br />
+            {new Date(event.startDate).toLocaleDateString("en-US", {
+              month: "long",
+              day: "numeric",
+              year: "numeric",
+            })}{" "}
+            in {event.location}
+          </Styled.li>
+        ))}
+      </Styled.ul>
+    </>
+  )
+}
+
+export default EventList
+```

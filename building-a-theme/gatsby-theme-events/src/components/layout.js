@@ -1,10 +1,13 @@
 import React from "react";
+import { Heading, Container } from 'theme-ui'
 
 const Layout = ({ children }) => {
   return (
     <div>
-      <h1>Gatsby Events Theme</h1>
-      {children}
+      <Heading>Gatsby Events Theme</Heading>
+      <Container>
+        {children}
+      </Container>
     </div>
   );
 };
