@@ -822,3 +822,15 @@ cd gatsby-theme-vents
 npm publish --access public
 ```
 
+## Consume a theme in a Gatsby application
+
+### Set up a new Gatsby site
+
+Make a enw directory called `theme-test`:
+
+```
+mkdir theme-test
+cd theme-test
+yarn init -y
+yarn add react react-dom gatsby @groundearth0/gatsby-theme-events
+```
