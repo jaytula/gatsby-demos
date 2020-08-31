@@ -793,3 +793,32 @@ const EventList = ({ events }) => {
 
 export default EventList
 ```
+
+## Publish a theme to npm
+
+### Namespace your theme
+
+In package.json:
+
+```json
+{
+  "name": "@yournpmusername/gatsby-theme-events",
+  "other-stuff": "omitted"
+}
+```
+
+### Make sure you're logged in to npm
+
+```shell
+npm whoami
+
+npm adduser
+```
+
+### Publish your theme
+
+```shell
+cd gatsby-theme-vents
+npm publish --access public
+```
+
