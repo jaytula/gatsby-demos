@@ -834,3 +834,12 @@ cd theme-test
 yarn init -y
 yarn add react react-dom gatsby @groundearth0/gatsby-theme-events
 ```
+## Configurea the theme
+
+Create `theme-test/gatsby-config.js` with contents:
+
+```js
+module.exports = {
+  plugins: ['@groundearth0/gatsby-theme-events']
+}
+```
