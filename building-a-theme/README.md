@@ -857,3 +857,15 @@ gatsby develop
 ```
 
 Remember to add a `.eslintrc` with plugin `jsx-a11y` to avoid error.
+
+### Add some data
+
+At `theme-test/data/events.yml`
+
+```yaml
+- name: Party
+  location: My House
+  start_date: 2019-06-26
+  end_date: 2019-06-26
+  url: https://jason.af/party
+```
