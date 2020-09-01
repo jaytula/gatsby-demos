@@ -849,3 +849,11 @@ module.exports = {
 ```shell
 yarn global add gatsby-cli
 ```
+
+### Run the site
+
+```shell
+gatsby develop
+```
+
+Remember to add a `.eslintrc` with plugin `jsx-a11y` to avoid error.
