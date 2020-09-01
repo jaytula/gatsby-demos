@@ -869,3 +869,25 @@ At `theme-test/data/events.yml`
   end_date: 2019-06-26
   url: https://jason.af/party
 ```
+
+## Use component shadowing to override theme components
+
+### Override theme colors
+
+Add file `theme-test/src/gatsby-plugin-theme-ui/index.js`:
+
+```js
+import merge from "lodash.merge"
+import { theme } from "@jlengstorf/gatsby-theme-events"
+export default merge({}, theme, {
+  colors: {
+    primary: "blue",
+  },
+})
+```
+
+Also add `lodash.merge`
+
+```shell
+yard add lodash.merge
+```
