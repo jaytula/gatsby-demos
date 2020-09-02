@@ -891,3 +891,9 @@ Also add `lodash.merge`
 ```shell
 yard add lodash.merge
 ```
+
+### Override an entire component
+
+Inside `src`, create a folder with the same title as your theme `src/@groundearth0/gatsby-theme-events`.
+
+Anything inside will "shadow the components in `@groundearth0/gatsby-theme-events`.
