@@ -37,3 +37,22 @@ module.exports = {
   ]
 }
 ```
+
+## Step 4
+
+### Querying data for a single image
+
+```jsx
+export const query = graphql`
+  query {
+    file(relativePath: { eq: "headers/headshot.jpg" }) {
+      childImageSharp {
+        fixed(width: 125, height: 125) {
+          ...GatsbyImageSharpFixed
+        }
+      }
+    }
+  }
+```
+
+Note that `GatsbyImageSharpFixed` is an implicit fragment and won't work in GraphiQL
