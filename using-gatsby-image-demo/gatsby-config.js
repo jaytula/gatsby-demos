@@ -6,5 +6,5 @@
 
 module.exports = {
   /* Your site config here */
-  plugins: [],
+  plugins: ['gatsby-tranformer-sharp', 'gatsby-plugin-sharp'],
 }
