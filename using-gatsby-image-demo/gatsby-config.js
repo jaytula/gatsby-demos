@@ -6,5 +6,14 @@
 
 module.exports = {
   /* Your site config here */
-  plugins: ['gatsby-tranformer-sharp', 'gatsby-plugin-sharp'],
+  plugins: [
+    "gatsby-tranformer-sharp",
+    "gatsby-plugin-sharp",
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        path: "./src/data/",
+      },
+    },
+  ],
 }
