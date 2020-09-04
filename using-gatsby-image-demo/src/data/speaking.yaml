@@ -1,0 +1,4 @@
+- image: headers/headshot.jpg
+  conference: 'abc'
+- image: strawberry-jam.jpg
+  conference: 'efg'
