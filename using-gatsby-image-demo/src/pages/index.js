@@ -1,7 +1,7 @@
 import React from "react"
+import { graphql } from "gatsby"
 import Img from "gatsby-image"
 import Layout from "../components/layout"
-import { graphql } from "gatsby"
 
 const HomePage = ({ data }) => {
   return (
@@ -14,16 +14,16 @@ const HomePage = ({ data }) => {
     </Layout>
   )
 }
+export default HomePage;
 
 export const query = graphql`
-query {
-  file(relativePath: { eq: "headers/headshot.jpg" }) {
-    childImageSharp {
-      fixed(width: 125, height: 125) {
-        ...GatsbyImageSharpFixed
+  query {
+    file(relativePath: { eq: "headers/headshot.jpg" }) {
+      childImageSharp {
+        fixed(width: 125, height: 125) {
+          ...GatsbyImageSharpFixed
+        }
       }
     }
   }
-}
 `
-export default HomePage;

@@ -7,6 +7,7 @@
 module.exports = {
   /* Your site config here */
   plugins: [
+    "gatsby-transformer-yaml",
     "gatsby-transformer-sharp",
     "gatsby-plugin-sharp",
     {

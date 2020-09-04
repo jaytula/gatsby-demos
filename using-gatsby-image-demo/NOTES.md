@@ -42,7 +42,12 @@ module.exports = {
 
 ### Querying data for a single image
 
+- Add a bare bones Layout component at `src/components/layout.js
+- In `pages/index.js`, add named export `query`:
+
 ```jsx
+import { graphql } from 'gatsby';
+
 export const query = graphql`
   query {
     file(relativePath: { eq: "headers/headshot.jpg" }) {
@@ -53,6 +58,55 @@ export const query = graphql`
       }
     }
   }
+`
 ```
 
-Note that `GatsbyImageSharpFixed` is an implicit fragment and won't work in GraphiQL
+- Export a React component `HomePage` that uses `Layout` as root component and
+has a single child `Img` with attributes `className` `fixed` and `alt`
+
+### Querying for multiple images from YAML data
+
+- Get a couple of unsplash images and place in `src/data`
+- Get the `gatsby-transformer-yaml` and add in `gatsby-config.js`
+- Create `speaking.yaml` file in `src/data` containing
+
+```yaml
+- image: headers/headshot.jpg
+```
+
+- Create new page `pages/sourced-from-yaml.js`
+
+```jsx
+import React from 'react'
+import Img from 'gatsby-image'
+import {graphql} from 'gatsby'
+import Layout from '../components/layout'
+
+const SourcedFromYaml = ({data}) => {
+  return <Layout>
+    <pre>
+    {JSON.stringify(data)}
+    </pre>
+  </Layout>
+}
+
+export const query = graphql`
+  {
+    allSpeakingYaml {
+      edges {
+        node {
+          image {
+            childImageSharp {
+              fluid {
+                ...GatsbyImageSharpFluid
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`
+
+export default SourcedFromYaml
+```
