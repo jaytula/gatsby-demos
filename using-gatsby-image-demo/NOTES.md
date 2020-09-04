@@ -110,3 +110,51 @@ export const query = graphql`
 
 export default SourcedFromYaml
 ```
+
+### Using Static Query
+
+Use static query instead if component is part of a reusable component:
+
+**/src/components/header-image.js**
+
+```jsx
+import React from 'react'
+import { graphql, useStaticQuery } from 'gatsby'
+import Img from 'gatsby-image'
+
+const HeaderImage = () => {
+  const data = useStaticQuery(graphql`
+    query {
+      file(relativePath: { eq: "headers/default.jpg" }) {
+        childImageSharp {
+          fixed(width: 125, height: 125) {
+            ...GatsbyImageSharpFixed
+          }
+        }
+      }
+    }
+  `)
+  
+  return <Img fixed={data.file.childImageSharp.fixed} />
+}
+
+export default HeaderImage
+```
+
+**/pages/static-query-demo.js**
+
+```jsx
+import React from 'react'
+import HeaderImage from '../components/header-image'
+
+const StaticQueryDemo = () => {
+  return (
+    <div>
+      <h1>StaticQueryDemo</h1>
+      <HeaderImage />
+    </div>
+  )
+}
+
+export default StaticQueryDemo
+```
