@@ -18,7 +18,10 @@ const MultipleQueriesDemo = ({ data }) => {
       ))}
       <h2>banner</h2>
 
-      <Img fluid={data.banner.childImageSharp.fluid} alt="" />
+      <Img
+        fluid={{ ...data.banner.childImageSharp.fluid, aspectRatio: 16/9 }}
+        alt=""
+      />
 
       <h2>JSON</h2>
 

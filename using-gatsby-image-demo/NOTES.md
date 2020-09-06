@@ -210,3 +210,7 @@ export const query = graphql`
 }
 `
 ```
+
+### Aspect ratio
+
+Demo'd in `multiple-queries-demo.js`
