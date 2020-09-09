@@ -6,6 +6,7 @@ import Login from "../components/login"
 
 const App = () => (
   <Layout>
+    <h1>App Component</h1>
     <Router>
       <Profile path="/app/profile" />
       <Login path="/app/login" />

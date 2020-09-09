@@ -15,8 +15,8 @@ const NavBar = () => {
 
       <nav>
         <Link to="/">Home</Link>{' '}
-        <Link to="/">Profile</Link>{' '}
-        <Link to="/">Logout</Link>
+        <Link to="/app/profile">Profile</Link>{' '}
+        <Link to="/app/login">Logout</Link>
       </nav>
     </div>
   )
