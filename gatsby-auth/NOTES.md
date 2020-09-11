@@ -241,3 +241,9 @@ export default PrivateRoute
 ```
 
 Import and use `PrivateRoute` in `App` component for `Profile`
+
+## Refactoring to use new routes and user data
+
+- src/components/nav-bar.js
+- src/pages/index.js
+- src/components/profile.js

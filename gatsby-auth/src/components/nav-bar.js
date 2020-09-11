@@ -1,7 +1,11 @@
-import React from "react"
-import { Link } from "gatsby"
+import React, { Fragment } from "react"
+import { Link, navigate } from "gatsby"
+import { isLoggedIn, logout, getUser } from "../services/auth"
 
 const NavBar = () => {
+  const loggedIn = isLoggedIn()
+  const user = getUser();
+
   return (
     <div
       style={{
@@ -11,12 +15,23 @@ const NavBar = () => {
         borderBottom: "1px solid #d1c1e0",
       }}
     >
-      <span>You are not logged in</span>
-
+      {loggedIn ? <span>Welcome {user.name}!</span> : <span>You are not logged in</span>}
       <nav>
-        <Link to="/">Home</Link>{' '}
-        <Link to="/app/profile">Profile</Link>{' '}
-        <Link to="/app/login">Logout</Link>
+        <Link to="/">Home</Link>{" "}
+        {loggedIn && (
+          <Fragment>
+            <Link to="/app/profile">Profile</Link>{" "}
+            <a
+              href="/"
+              onClick={e => {
+                e.preventDefault()
+                logout(() => navigate("/app/login"))
+              }}
+            >
+              Logout
+            </a>
+          </Fragment>
+        )}
       </nav>
     </div>
   )
