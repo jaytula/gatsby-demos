@@ -1,10 +1,12 @@
 import React, { Fragment } from "react"
 
 import Layout from "../components/layout"
-import { isLoggedIn, getUser } from "../services/auth"
+import { useAuth } from "../services/auth"
 import { Link } from "gatsby"
 
 export default function Home() {
+  const { isLoggedIn, getUser } = useAuth()
+
   const loggedIn = isLoggedIn()
   const user = getUser()
 

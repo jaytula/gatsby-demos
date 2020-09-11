@@ -1,8 +1,10 @@
 import React, { useState } from "react"
 import { navigate } from "gatsby"
-import { handleLogin, isLoggedIn } from "../services/auth"
+import { useAuth } from "../services/auth"
 
 const Login = () => {
+  const { handleLogin, isLoggedIn } = useAuth();
+
   const [formInputs, setFormInputs] = useState({ username: "", password: "" })
 
   const handleUpdate = event => {

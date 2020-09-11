@@ -1,6 +1,8 @@
-export const isBrowser = () => typeof window !== "undefined"
+import React, { useContext } from "react"
 
-export const getUser = () =>
+const isBrowser = () => typeof window !== "undefined"
+
+const getUser = () =>
   isBrowser() && window.localStorage.getItem("gatsbyUser")
     ? JSON.parse(window.localStorage.getItem("gatsbyUser"))
     : {}
@@ -8,7 +10,12 @@ export const getUser = () =>
 const setUser = user =>
   window.localStorage.setItem("gatsbyUser", JSON.stringify(user))
 
-export const handleLogin = ({ username, password }) => {
+const isLoggedIn = () => {
+  const user = getUser()
+  return !!user.username
+}
+
+const handleLogin = ({ username, password }) => {
   if (username === "john" && password === "pass") {
     return setUser({
       username: "john",
@@ -19,12 +26,22 @@ export const handleLogin = ({ username, password }) => {
   return false
 }
 
-export const isLoggedIn = () => {
-  const user = getUser()
-  return !!user.username
-}
-
-export const logout = callback => {
+const logout = callback => {
   setUser({})
   callback()
 }
+
+const AuthContext = React.createContext({
+  getUser,
+  isLoggedIn,
+  handleLogin,
+  logout,
+})
+
+export const useAuth = () => useContext(AuthContext)
+
+export const AuthProvider = ({ children }) => (
+  <AuthContext.Provider value={{getUser, isLoggedIn, handleLogin, logout}}>
+    {children}
+  </AuthContext.Provider>
+)

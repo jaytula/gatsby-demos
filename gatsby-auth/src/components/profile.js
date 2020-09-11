@@ -1,7 +1,8 @@
 import React from "react"
-import { getUser } from "../services/auth"
+import { useAuth } from "../services/auth"
 
 const Profile = () => {
+  const { getUser } = useAuth();
   const user = getUser()
 
   return (
