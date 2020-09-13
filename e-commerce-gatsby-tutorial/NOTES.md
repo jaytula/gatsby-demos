@@ -27,3 +27,8 @@ const getStripe = () => {
 ```shell
 npm install @stripe/stripe-js
 ```
+
+### Getting your Stripe keys
+
+- Click `Developers` and then `API keys` in left side bar
+- Set environment variables `STRIPE_PUBLISH_KEY` and `STRIPE_SECRET_KEY`
