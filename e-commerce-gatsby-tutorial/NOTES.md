@@ -32,3 +32,21 @@ npm install @stripe/stripe-js
 
 - Click `Developers` and then `API keys` in left side bar
 - Set environment variables `STRIPE_PUBLISH_KEY` and `STRIPE_SECRET_KEY`
+
+### Enabling the "Checkout client-only integration" for your Stripe account
+
+- Click `Settings` and then `Checkout settings` under `Product Settings` `Payments`
+
+**Allow Checkout to read product information**
+
+```
+To use Checkout's client-only integration, you allow your publishable key to generate checkout 
+pages with a Product, SKU or Price ID on your Stripe account.
+
+This means you can add one-time purchase and recurring products to Stripe via the Dashboard 
+and receive payments for them right away. Archived products cannot be purchased. However, users
+with knowledge of a public product ID may be able to purchase the product.
+
+If you don't want to make your product IDs public, or dynamically populate a checkout page without 
+using products on Stripe, integrate using the Checkout client & server integration.
+```
