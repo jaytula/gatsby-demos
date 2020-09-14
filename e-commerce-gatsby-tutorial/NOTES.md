@@ -31,7 +31,7 @@ npm install @stripe/stripe-js
 ### Getting your Stripe keys
 
 - Click `Developers` and then `API keys` in left side bar
-- Set environment variables `STRIPE_PUBLISH_KEY` and `STRIPE_SECRET_KEY`
+- Set environment variables `GATSBY_STRIPE_PUBLISH_KEY` and `GATSBY_STRIPE_SECRET_KEY` in `.env.development`
 
 ### Enabling the "Checkout client-only integration" for your Stripe account
 
