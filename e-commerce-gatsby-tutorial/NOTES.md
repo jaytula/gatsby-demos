@@ -50,3 +50,25 @@ with knowledge of a public product ID may be able to purchase the product.
 If you don't want to make your product IDs public, or dynamically populate a checkout page without 
 using products on Stripe, integrate using the Checkout client & server integration.
 ```
+
+## Example 1: One Button
+
+### Create products and prices
+
+This must be done from the Stripe Dashboard or via the Stripe API
+
+### Create a checkout component that loads Stripe.js and redirects to the checkout
+
+Component notes:
+
+- Named import `loadStripe` from `@stripe/stripe-js`
+- `loadStripe` is called with the Stripe Publish key
+- Create an `onClick` handler called `redirectToCheckout`
+- Create `getStripe` function so that `loadStripe` is called only once.
+- Get `stripe` instance with `await getStripe()`
+- We await on `stripe.redirectToChekcout` in `redirectToCheckout`.  It takes an options object with
+  - mode: "payment"
+  - lineItems: `[{ price: string, quantity: number}]`
+  - successUrl: 'http://something.com/success-location'
+  - cancelUrl: 'http://something.com/cancel-location'
+- Destructure `error` from `awaited` call to `stripe.redirectToCheckout` and display it
