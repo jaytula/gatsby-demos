@@ -72,3 +72,37 @@ Component notes:
   - successUrl: 'http://something.com/success-location'
   - cancelUrl: 'http://something.com/cancel-location'
 - Destructure `error` from `awaited` call to `stripe.redirectToCheckout` and display it
+
+## Example 2: Import products and prices via a source plugin
+
+### Add the Stripe source plugin
+
+Instead of hardcoding price IDs, we can use `gatsby-source-stripe` plugin
+
+```shell
+npm install gatsby-source-stripe
+```
+
+Then add to `gatsby-config.js`
+
+```js
+module.exports = {
+  plugins: [
+    {
+      resolve: 'gatsby-source-stripe',
+      options: {
+        objects: ["Price"],
+        secretKey: process.env.STRIPE_SECRET_KEY,
+        downloadFiles: false,
+      }
+    }
+  ]
+}
+```
+
+To use the defined env variable, in `gatsby-config.js`:
+
+```js
+require('dotenv').config({
+  path: `.env.${process.env.NODE_ENV}`
+})
