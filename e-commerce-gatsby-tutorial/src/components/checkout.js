@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { loadStripe } from "@stripe/stripe-js"
+import getStripe from "../utils/stripejs"
 
 const buttonStyles = {
   fontSize: "13px",
@@ -17,15 +17,6 @@ const buttonDisabledStyles = {
   cursor: "not-allowed",
 }
 
-console.log({apiKey: process.env.GATSBY_STRIPE_PUBLISH_KEY})
-let stripePromise
-const getStripe = () => {
-  if (!stripePromise) {
-    stripePromise = loadStripe(process.env.GATSBY_STRIPE_PUBLISH_KEY)
-  }
-  return stripePromise
-}
-
 const Checkout = () => {
   const [loading, setLoading] = useState(false)
 
@@ -33,7 +24,7 @@ const Checkout = () => {
     event.preventDefault()
     setLoading(true)
 
-    const stripe = await getStripe()
+    const stripe = await getStripe();
     const { error } = await stripe.redirectToCheckout({
       mode: "payment",
       lineItems: [{ price: "price_1HR5uwLvDgpsQIsat47hVYCk", quantity: 1 }],
