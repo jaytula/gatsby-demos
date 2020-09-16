@@ -113,3 +113,22 @@ require("dotenv").config({
 - Create component Products
 - Use `useStaticQuery` or `StaticQuery`
 - Construct `graphql` query from graphiql
+
+### Extract loading of Stripe.js into a utility function
+
+**src/utils/stripejs.js**
+
+```js
+/**
+ * This is a singleton to ensure we only instantiate Stripe once
+ */
+import { loadStripe } from '@stripe/stripe-js'
+
+let stripePromise
+const getStripe = () => {
+  if(!stripePromise) {
+    stripePromie = loadStripe(process.env.GATSBY_STRIPE_PUBLISH_KEY)
+  }
+  return stripePromise
+}
+```
