@@ -40,14 +40,14 @@ npm install @stripe/stripe-js
 **Allow Checkout to read product information**
 
 ```
-To use Checkout's client-only integration, you allow your publishable key to generate checkout 
+To use Checkout's client-only integration, you allow your publishable key to generate checkout
 pages with a Product, SKU or Price ID on your Stripe account.
 
-This means you can add one-time purchase and recurring products to Stripe via the Dashboard 
+This means you can add one-time purchase and recurring products to Stripe via the Dashboard
 and receive payments for them right away. Archived products cannot be purchased. However, users
 with knowledge of a public product ID may be able to purchase the product.
 
-If you don't want to make your product IDs public, or dynamically populate a checkout page without 
+If you don't want to make your product IDs public, or dynamically populate a checkout page without
 using products on Stripe, integrate using the Checkout client & server integration.
 ```
 
@@ -66,7 +66,7 @@ Component notes:
 - Create an `onClick` handler called `redirectToCheckout`
 - Create `getStripe` function so that `loadStripe` is called only once.
 - Get `stripe` instance with `await getStripe()`
-- We await on `stripe.redirectToChekcout` in `redirectToCheckout`.  It takes an options object with
+- We await on `stripe.redirectToChekcout` in `redirectToCheckout`. It takes an options object with
   - mode: "payment"
   - lineItems: `[{ price: string, quantity: number}]`
   - successUrl: 'http://something.com/success-location'
@@ -89,20 +89,27 @@ Then add to `gatsby-config.js`
 module.exports = {
   plugins: [
     {
-      resolve: 'gatsby-source-stripe',
+      resolve: "gatsby-source-stripe",
       options: {
         objects: ["Price"],
         secretKey: process.env.STRIPE_SECRET_KEY,
         downloadFiles: false,
-      }
-    }
-  ]
+      },
+    },
+  ],
 }
 ```
 
 To use the defined env variable, in `gatsby-config.js`:
 
 ```js
-require('dotenv').config({
-  path: `.env.${process.env.NODE_ENV}`
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
 })
+```
+
+### Create a component that lists your products and prices
+
+- Create component Products
+- Use `useStaticQuery` or `StaticQuery`
+- Construct `graphql` query from graphiql

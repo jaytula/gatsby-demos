@@ -12,6 +12,9 @@ const SecondPage = () => (
     <p>Welcome to page 2</p>
     <Link to="/">Go back to the homepage</Link>
     <Checkout />
+    <div>
+      <h2>Obtain dynamically</h2>
+    </div>
   </Layout>
 )
 
