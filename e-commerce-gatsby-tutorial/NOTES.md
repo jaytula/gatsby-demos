@@ -132,3 +132,7 @@ const getStripe = () => {
   return stripePromise
 }
 ```
+
+## Adding shopping cart functionality
+
+There's a `use-shopping-cart` library
