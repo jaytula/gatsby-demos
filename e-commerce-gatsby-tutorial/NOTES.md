@@ -136,3 +136,9 @@ const getStripe = () => {
 ## Adding shopping cart functionality
 
 There's a `use-shopping-cart` library
+
+## Testing Payments
+
+In test mode (when using the API key that includes test) Stripe provides test cards for you to test different checkout scenarios.
+
+https://stripe.com/docs/testing#cards
