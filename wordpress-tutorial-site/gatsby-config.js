@@ -5,6 +5,15 @@ module.exports = {
     author: `@gatsbyjs`,
   },
   plugins: [
+    {
+      resolve: 'gatsby-source-wordpress',
+      options: {
+        baseUrl: 'localhost:8100',
+        protocol: 'http',
+        hostingWPCOM: false,
+        useACF: true,
+      }
+    },
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,
