@@ -6,12 +6,9 @@ module.exports = {
   },
   plugins: [
     {
-      resolve: 'gatsby-source-wordpress',
+      resolve: 'gatsby-source-wordpress-experimental',
       options: {
-        baseUrl: 'localhost:8100',
-        protocol: 'http',
-        hostingWPCOM: false,
-        useACF: true,
+        url: 'http://localhost:8100/index.php?graphql'
       }
     },
     `gatsby-plugin-react-helmet`,
