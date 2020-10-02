@@ -12,7 +12,9 @@ const WordpressPosts = ({ data }) => (
     {data.allWpPost.edges.map(({ node }) => {
       return (
         <div key={node.id}>
-          <h2>{node.title}</h2>
+          <Link to={`/${node.slug}`}>
+            <h2>{node.title}</h2>
+          </Link>
           <div dangerouslySetInnerHTML={{ __html: node.excerpt }} />
         </div>
       )
