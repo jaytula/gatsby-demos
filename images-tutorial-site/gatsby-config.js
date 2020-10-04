@@ -9,6 +9,9 @@ module.exports = {
       resolve: "gatsby-source-wordpress-experimental",
       options: {
         url: "http://localhost:9100/index.php?graphql",
+        html: {
+          useGatsbyImage: true
+        }
       },
     },
     `gatsby-plugin-react-helmet`,
