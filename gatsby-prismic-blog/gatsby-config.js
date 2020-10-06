@@ -7,6 +7,15 @@ module.exports = {
   plugins: [
     `gatsby-plugin-react-helmet`,
     {
+      resolve: "gatsby-source-prismic",
+      options: {
+        repositoryName: "gatsby-blog-scratch-demo",
+        schemas: {
+          post: require('./src/schemas/post.json')
+        }
+      },
+    },
+    {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,
