@@ -6,12 +6,11 @@ const BlogPosts = ({ posts }) => {
   return (
     <div>
       {posts.map(post => {
+        console.log(post);
         return (
-          <div key={post.node._meta.id}>
-            <h2>{RichText.asText(post.node.title)}</h2>
-            <p>
-              <time>{post.node.date}</time>
-            </p>
+          <div key={post.node.id}>
+            <RichText render={post.node.data.title.raw} />
+            <RichText render={post.node.data.body.raw} />
           </div>
         )
       })}
