@@ -10,9 +10,17 @@ module.exports = {
       resolve: "gatsby-source-prismic",
       options: {
         repositoryName: "gatsby-blog-scratch-demo",
+        linkResolver: () => doc => {
+          // Route for blog posts
+          if (doc.type === "post") {
+            return "/blog/" + doc.uid
+          }
+          // Homepage route fallback
+          return "/"
+        },
         schemas: {
-          post: require('./src/schemas/post.json')
-        }
+          post: require("./src/schemas/post.json"),
+        },
       },
     },
     {
