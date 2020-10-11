@@ -33,6 +33,7 @@
     "build": "gatsby build",
     "develop": "gatsby develop",
     "tunnel": "lt -p 8000 -s brandy-iron",
+    "develop-tunnel": "concurrently \"npm run develop\" \"npm run tunnel\"",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
     "start": "npm run develop",
     "serve": "gatsby serve",
