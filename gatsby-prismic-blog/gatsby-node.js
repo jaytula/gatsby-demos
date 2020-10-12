@@ -43,14 +43,5 @@ exports.createPages = async({graphql, actions}) => {
         uid: node.uid
       }
     })
-
-        createPage({
-      path: `/preview/${node.uid}`,
-      component: path.resolve(__dirname, 'src/templates/preview.js'),
-      context: {
-        id: node.id,
-        uid: node.uid
-      }
-    })
   })
 }
