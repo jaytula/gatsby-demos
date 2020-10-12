@@ -20,7 +20,7 @@ export default function HTML(props) {
           name="viewport"
           content="width=device-width, initial-scale=1, shrink-to-fit=no"
         />
-        <div dangerouslySetInnerHTML={{ __html: PRISMIC_TOOLBAR_SCRIPT }} />
+        {/* <div dangerouslySetInnerHTML={{ __html: PRISMIC_TOOLBAR_SCRIPT }} /> */}
         {props.headComponents}
       </head>
       <body {...props.bodyAttributes}>
