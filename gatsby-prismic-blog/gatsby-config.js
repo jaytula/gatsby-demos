@@ -13,7 +13,7 @@ module.exports = {
     {
       resolve: "gatsby-source-prismic",
       options: {
-        repositoryName: "gatsby-blog-scratch-demo",
+        repositoryName: process.env.GATSBY_PRISMIC_REPOSITORY_NAME,
         // linkResolver: () => doc => {
         //   // Route for blog posts
         //   if (doc.type === "post") {
