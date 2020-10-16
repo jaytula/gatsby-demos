@@ -6,7 +6,7 @@ import { linkResolver } from "../linkResolver"
 import Layout from "../components/layout"
 
 const PreviewPage = props => {
-  const { isPreview, data, isLoading } = props
+  const { isPreview } = props
   if (isPreview === false) return "Not a preview!"
 
   return (
@@ -23,4 +23,5 @@ const PreviewPage = props => {
 
 export default withPreviewResolver(PreviewPage, {
   repositoryName: process.env.GATSBY_PRISMIC_REPOSITORY_NAME,
+  linkResolver
 })
