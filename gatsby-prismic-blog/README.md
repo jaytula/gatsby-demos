@@ -6,6 +6,7 @@
 - Use this plugin instead: https://github.com/angeloashmore/gatsby-source-prismic
 - Previews: https://github.com/angeloashmore/gatsby-source-prismic/blob/master/docs/previews.md
 - Article: https://labs.walltowall.com/improving-the-prismic-preview-developer-experience/
+- Link Resolving: https://prismic.io/docs/javascript/query-the-api/link-resolving
 
 
 ## PreviewStoreProvider
