@@ -43,5 +43,13 @@ exports.createPages = async({graphql, actions}) => {
         uid: node.uid
       }
     })
+    createPage({
+      path: `/doc/${node.uid}`,
+      component: path.resolve(__dirname, 'src/templates/doc.js'),
+      context: {
+        id: node.id,
+        uid: node.uid
+      }
+    })
   })
 }

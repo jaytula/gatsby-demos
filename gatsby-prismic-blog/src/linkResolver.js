@@ -5,5 +5,6 @@ export const linkResolver = ({node: doc}) => {
   if (doc.type === 'page') return "/" + doc.uid;
   // Fallback for other types, in case new custom types get created
   console.log('got here');
-  return "/doc/" + doc.id;
+
+  return "/doc/" + doc.uid;
 };
