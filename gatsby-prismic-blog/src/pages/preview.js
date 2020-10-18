@@ -3,7 +3,7 @@ import { withPreviewResolver } from "gatsby-source-prismic"
 
 import { linkResolver } from "../linkResolver"
 
-import Layout from "../components/layout"
+import Layout from "../components/Layout"
 
 const PreviewPage = props => {
   const { isPreview } = props
