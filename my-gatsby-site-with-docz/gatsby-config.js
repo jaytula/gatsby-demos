@@ -5,7 +5,12 @@ module.exports = {
     author: `@gatsbyjs`,
   },
   plugins: [
-    'gatsby-theme-docz',
+    {
+      resolve: "gatsby-theme-docz",
+      options: {
+        src: "./src",
+      },
+    },
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,
