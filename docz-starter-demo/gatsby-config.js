@@ -4,12 +4,13 @@ module.exports = {
     author: `Pedro Nauck`,
     description: `Gatsby starter with Docz and a blog for your documentation`,
   },
-  __experimentalThemes: [
+  plugins: [
     {
       resolve: 'gatsby-theme-docz',
+      options: {
+        src: './src'
+      }
     },
-  ],
-  plugins: [
     {
       resolve: `gatsby-source-filesystem`,
       options: {
