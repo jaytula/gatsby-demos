@@ -39,6 +39,19 @@ const SEO = ({ description, lang, meta, image: metaImage, title }) => {
           name: "keywords",
           content: site.siteMetadata.keywords.join(","),
         },
+        // Open Graph Protocol https://ogp.me/
+        {
+          property: 'og:title',
+          content: title
+        },
+        {
+          property: 'og:description',
+          content: metaDescription
+        },
+        {
+          property: 'og:type',
+          content: 'website',
+        }
       ]}
     />
   )
