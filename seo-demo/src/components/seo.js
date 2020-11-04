@@ -41,17 +41,29 @@ const SEO = ({ description, lang, meta, image: metaImage, title }) => {
         },
         // Open Graph Protocol https://ogp.me/
         {
-          property: 'og:title',
-          content: title
+          property: "og:title",
+          content: title,
         },
         {
-          property: 'og:description',
-          content: metaDescription
+          property: "og:description",
+          content: metaDescription,
         },
         {
-          property: 'og:type',
-          content: 'website',
-        }
+          property: "og:type",
+          content: "website",
+        },
+        {
+          name: "twitter:creator",
+          content: site.siteMetadata.author,
+        },
+        {
+          name: "twitter:title",
+          content: title,
+        },
+        {
+          name: "twitter:description",
+          content: metaDescription,
+        },
       ]}
     />
   )
