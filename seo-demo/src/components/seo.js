@@ -12,7 +12,7 @@ const SEO = ({
   pathname,
 }) => {
   const { site } = useStaticQuery(
-    grqphql`
+    graphql`
       query {
         site {
           siteMetadata {
@@ -32,7 +32,7 @@ const SEO = ({
     metaImage && metaImage.src
       ? `${site.siteMetadata.siteUrl}${metaImage.src}`
       : null
-  const canonical = pathname ? `${site.siteMetadata.siteUrl}${pathnamee}` : null
+  const canonical = pathname ? `${site.siteMetadata.siteUrl}${pathname}` : null
 
   return (
     <Helmet
