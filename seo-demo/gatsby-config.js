@@ -9,6 +9,14 @@ module.exports = {
   plugins: [
     `gatsby-plugin-react-helmet`,
     {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'blog',
+        path: `${__dirname}/src/content/blog`
+      }
+    },
+    'gatsby-transformer-remark',
+    {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,
