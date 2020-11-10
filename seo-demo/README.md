@@ -51,3 +51,15 @@ const SEO = ({ description}) => {
 
 export default SEO
 ```
+
+## References
+
+- Facebook uses the [Open Graph](https://developers.facebook.com/docs/sharing/webmasters/#markup) tag format
+- Twitter uses `twitter:` keywords. See [Twitter Cards](https://developer.twitter.com/en/docs/tweets/optimize-with-cards/overview/abouts-cards.html) for more info
+- Slack reads tags in the following order ([source](https://medium.com/slack-developer-blog/everything-you-ever-wanted-to-know-about-unfurling-but-were-afraid-to-ask-or-how-to-make-your-e64b4bb9254))
+  1. oEmbed server
+  2. Twitter cards tags / Facebook Open Graph tags
+  3. HTML meta tags
+- Both Google and Apple offer support for JSON-LD, which is not covered in this guide
+  - If you’d like to learn more, check out [this excellent guide](https://nystudio107.com/blog/json-ld-structured-data-and-erotica) for more info on JSON-LD
+- Check out the [`gatsby-seo-example`](https://github.com/DSchau/gatsby-seo-example) for a ready-to-use starter for powering your Markdown-based blog.
